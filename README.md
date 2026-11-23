@@ -23,7 +23,8 @@ Production build: `npm run build`. No automatic deployment is configured in this
 ## Acceptance gates
 
 - [x] Reproducible source import and Vite build on GitHub Actions.
-- [ ] TypeScript checks on the independent repository.
+- [x] npm vulnerability audit at high severity threshold (CI 45281510564).
+- [x] TypeScript checks on the independent repository (CI 45281510564).
 - [ ] Browser functional acceptance with representative API data, empty API responses and error conditions.
 - [ ] Review key handling, API availability and deployment paths.
 - [ ] Identify canonical ownership and retire duplicated maintenance without breaking existing deployments.
