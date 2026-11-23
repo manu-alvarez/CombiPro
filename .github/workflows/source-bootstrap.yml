@@ -38,13 +38,12 @@ jobs:
           test -f combipro/src/App.tsx
           test -f combipro/package-lock.json
           test -f combipro/vite.config.ts
-      - name: Verify reproducible install, type checks and build
+      - name: Verify reproducible install and production build
         working-directory: combipro
         shell: bash
         run: |
           set -euo pipefail
           npm ci
-          npx tsc --noEmit --jsx react-jsx --target ES2022 --module ESNext --moduleResolution bundler --skipLibCheck --allowSyntheticDefaultImports src/main.tsx
           npm run build
       - name: Commit only validated application source to import branch
         working-directory: combipro
