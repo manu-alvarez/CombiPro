@@ -1,0 +1,26 @@
+name: CombiPro quality
+on:
+  push:
+    branches: [main, import/combipro-canonical-20261123]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Reproducible install
+        run: npm ci
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Vulnerability audit
+        run: npm audit --audit-level=high
+      - name: Production build
+        run: npm run build

@@ -1,12 +1,32 @@
-# CombiPro
+# CombiPro — standalone application
 
-Este repositorio está en proceso de consolidación como fuente independiente del proyecto CombiPro. Las implementaciones existentes en `SERVER-DEV/apps/combipro` y `MSBrossAI/apps/combipro` son diferentes y **no se consideran equivalentes** sin validación.
+CombiPro is a React/Vite frontend for exploring sports odds and generating combinations. Its numerical outputs are estimates, not guarantees of winning.
 
-## Estado
+## Source and current acceptance
 
-- [x] Inventario y divergencia de fuentes identificados.
-- [ ] Importación de código base reproducible y compilación comprobada.
-- [ ] Pruebas de funcionamiento y revisión de APIs/secretos.
-- [ ] Establecimiento de fuente canónica y retirada de duplicación de mantenimiento.
+This repository was initialized from the application source in [MSBrossAI/apps/combipro](https://github.com/manu-alvarez/MSBrossAI/tree/1e37070fa51f660b0966d4d14a1d1e78e453d082/apps/combipro), pinned to commit `1e37070fa51f660b0966d4d14a1d1e78e453d082`. A different, non-typechecking version also exists in `SERVER-DEV/apps/combipro`; do not synchronize it blindly.
 
-No hay despliegue automático configurado. Consultar el [registro de cierre de 35 repositorios](https://github.com/manu-alvarez/manu-alvarez.github.io/blob/main/docs/GITHUB-35-CHECKLIST.md).
+The imported application builds without a backend, but live market data requires a valid external odds API key and network access. The app sends that key to the upstream odds API directly from the user's browser; it is not a server-side secret store. Do not enter a privileged/shared production key.
+
+## Local development
+
+Requires Node.js 22 and npm.
+
+```bash
+npm ci
+npm run typecheck
+npm run dev
+```
+
+Production build: `npm run build`. No automatic deployment is configured in this repository.
+
+## Acceptance gates
+
+- [x] Reproducible source import and Vite build on GitHub Actions.
+- [x] npm vulnerability audit at high severity threshold (CI 45281510564).
+- [x] TypeScript checks on the independent repository (CI 45281510564).
+- [ ] Browser functional acceptance with representative API data, empty API responses and error conditions.
+- [ ] Review key handling, API availability and deployment paths.
+- [ ] Identify canonical ownership and retire duplicated maintenance without breaking existing deployments.
+
+Do not describe the project as production-ready until these gates are verified. Full account-wide tracker: [GitHub 35](https://github.com/manu-alvarez/manu-alvarez.github.io/blob/main/docs/GITHUB-35-CHECKLIST.md).
