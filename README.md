@@ -1,12 +1,26 @@
-# CombiPro
+# CombiPro - Generador de Combinadas Deportivas
 
-Este repositorio está en proceso de consolidación como fuente independiente del proyecto CombiPro. Las implementaciones existentes en `SERVER-DEV/apps/combipro` y `MSBrossAI/apps/combipro` son diferentes y **no se consideran equivalentes** sin validación.
+## Descripción
+Generador de combinadas deportivas con algoritmo de probabilidad real, gestión de stake y seguimiento de resultados.
 
-## Estado
+## Arquitectura
+- **Frontend**: React 19 + Vite 7 + MUI 7 + Framer Motion 12
+- **Backend**: Node.js/Express (proxy de API keys)
+- **API**: API-Football / Odds API
 
-- [x] Inventario y divergencia de fuentes identificados.
-- [ ] Importación de código base reproducible y compilación comprobada.
-- [ ] Pruebas de funcionamiento y revisión de APIs/secretos.
-- [ ] Establecimiento de fuente canónica y retirada de duplicación de mantenimiento.
+## Características
+- ✅ Selección de ligas europeas
+- ✅ Perfiles de riesgo (Safety/Balanced/Turbo)
+- ✅ Gestión de stake
+- ✅ Algoritmo de generación de combinadas
+- ✅ Cálculo de probabilidades reales
+- ✅ Historial de combinadas
+- ✅ Seguimiento de resultados
+- ✅ Glassmorphism dark theme
 
-No hay despliegue automático configurado. Consultar el [registro de cierre de 35 repositorios](https://github.com/manu-alvarez/manu-alvarez.github.io/blob/main/docs/GITHUB-35-CHECKLIST.md).
+## Mejoras Fusionadas
+- ✅ Reescritura completa desde HTML estático
+- ✅ API real de odds deportivas
+- ✅ Algoritmo de probabilidad real
+- ✅ Backend proxy para API keys
+- ✅ Docker Compose para despliegue
