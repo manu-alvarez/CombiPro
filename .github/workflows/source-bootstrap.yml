@@ -20,11 +20,11 @@ jobs:
           ref: import/combipro-canonical-20261123
           path: combipro
           persist-credentials: true
-      - name: Checkout pinned SERVER-DEV source
+      - name: Checkout pinned MSBrossAI source
         uses: actions/checkout@v4
         with:
-          repository: manu-alvarez/SERVER-DEV
-          ref: 3e8a52b1006639abfba8b71836cb5c4d6b57306d
+          repository: manu-alvarez/MSBrossAI
+          ref: 1e37070fa51f660b0966d4d14a1d1e78e453d082
           path: upstream
           persist-credentials: false
       - uses: actions/setup-node@v4
@@ -37,14 +37,14 @@ jobs:
           cp -a upstream/apps/combipro/. combipro/
           test -f combipro/src/App.tsx
           test -f combipro/package-lock.json
-          test -f combipro/Dockerfile
+          test -f combipro/vite.config.ts
       - name: Verify reproducible install, type checks and build
         working-directory: combipro
         shell: bash
         run: |
           set -euo pipefail
           npm ci
-          npx tsc --noEmit
+          npx tsc --noEmit --jsx react-jsx --target ES2022 --module ESNext --moduleResolution bundler --skipLibCheck --allowSyntheticDefaultImports src/main.tsx
           npm run build
       - name: Commit only validated application source to import branch
         working-directory: combipro
