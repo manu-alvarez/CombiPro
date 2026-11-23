@@ -116,9 +116,17 @@ function generateCombos(matches: Match[], risk: 'safe' | 'balanced' | 'turbo', s
       { matchId: m.id, match: `${m.homeTeam} vs ${m.awayTeam}`, league: m.leagueName, type: 'Doble Oport.', selection: '1X', odds: m.odds.dc1x, probability: calcProb(m.odds.dc1x) },
       { matchId: m.id, match: `${m.homeTeam} vs ${m.awayTeam}`, league: m.leagueName, type: 'Doble Oport.', selection: 'X2', odds: m.odds.dcx2, probability: calcProb(m.odds.dcx2) },
       { matchId: m.id, match: `${m.homeTeam} vs ${m.awayTeam}`, league: m.leagueName, type: 'Doble Oport.', selection: '12', odds: m.odds.dc12, probability: calcProb(m.odds.dc12) },
-      { matchId: m.id, match: `${m.homeTeam} vs ${m.awayTeam}`, league: m.leagueName, type: 'Sin Empate', selection: '1', odds: m.odds.dnbHome, probability: calcProb(m.odds.dnbHome) },
-      { matchId: m.id, match: `${m.homeTeam} vs ${m.awayTeam}`, league: m.leagueName, type: 'Sin Empate', selection: '2', odds: m.odds.dnbAway, probability: calcProb(m.odds.dnbAway) }
     );
+    // DNB markets are optional in the upstream odds contract; never substitute
+    // 1X2 odds for a missing draw-no-bet price.
+    const dnbHome = m.odds.dnbHome;
+    const dnbAway = m.odds.dnbAway;
+    if (typeof dnbHome === 'number' && Number.isFinite(dnbHome) && dnbHome > 1) {
+      allPicks.push({ matchId: m.id, match: `${m.homeTeam} vs ${m.awayTeam}`, league: m.leagueName, type: 'Sin Empate', selection: '1', odds: dnbHome, probability: calcProb(dnbHome) });
+    }
+    if (typeof dnbAway === 'number' && Number.isFinite(dnbAway) && dnbAway > 1) {
+      allPicks.push({ matchId: m.id, match: `${m.homeTeam} vs ${m.awayTeam}`, league: m.leagueName, type: 'Sin Empate', selection: '2', odds: dnbAway, probability: calcProb(dnbAway) });
+    }
   });
 
   let allowedTypes: string[] = [];
@@ -161,7 +169,7 @@ function generateCombos(matches: Match[], risk: 'safe' | 'balanced' | 'turbo', s
 
 // --- FADE ANIMATIONS ---
 const containerVariants = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.1 } } };
-const itemVariants = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } } };
+const itemVariants = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 300, damping: 24 } } };
 
 export default function App() {
   const [apiKey, setApiKey] = useState(() => localStorage.getItem('odds_api_key') || (import.meta as any).env.VITE_ODDS_API_KEY || '');

@@ -1,26 +1,31 @@
-# CombiPro - Generador de Combinadas Deportivas
+# CombiPro — standalone application
 
-## Descripción
-Generador de combinadas deportivas con algoritmo de probabilidad real, gestión de stake y seguimiento de resultados.
+CombiPro is a React/Vite frontend for exploring sports odds and generating combinations. Its numerical outputs are estimates, not guarantees of winning.
 
-## Arquitectura
-- **Frontend**: React 19 + Vite 7 + MUI 7 + Framer Motion 12
-- **Backend**: Node.js/Express (proxy de API keys)
-- **API**: API-Football / Odds API
+## Source and current acceptance
 
-## Características
-- ✅ Selección de ligas europeas
-- ✅ Perfiles de riesgo (Safety/Balanced/Turbo)
-- ✅ Gestión de stake
-- ✅ Algoritmo de generación de combinadas
-- ✅ Cálculo de probabilidades reales
-- ✅ Historial de combinadas
-- ✅ Seguimiento de resultados
-- ✅ Glassmorphism dark theme
+This repository was initialized from the application source in [MSBrossAI/apps/combipro](https://github.com/manu-alvarez/MSBrossAI/tree/1e37070fa51f660b0966d4d14a1d1e78e453d082/apps/combipro), pinned to commit `1e37070fa51f660b0966d4d14a1d1e78e453d082`. A different, non-typechecking version also exists in `SERVER-DEV/apps/combipro`; do not synchronize it blindly.
 
-## Mejoras Fusionadas
-- ✅ Reescritura completa desde HTML estático
-- ✅ API real de odds deportivas
-- ✅ Algoritmo de probabilidad real
-- ✅ Backend proxy para API keys
-- ✅ Docker Compose para despliegue
+The imported application builds without a backend, but live market data requires a valid external odds API key and network access. The app sends that key to the upstream odds API directly from the user's browser; it is not a server-side secret store. Do not enter a privileged/shared production key.
+
+## Local development
+
+Requires Node.js 22 and npm.
+
+```bash
+npm ci
+npm run typecheck
+npm run dev
+```
+
+Production build: `npm run build`. No automatic deployment is configured in this repository.
+
+## Acceptance gates
+
+- [x] Reproducible source import and Vite build on GitHub Actions.
+- [ ] TypeScript checks on the independent repository.
+- [ ] Browser functional acceptance with representative API data, empty API responses and error conditions.
+- [ ] Review key handling, API availability and deployment paths.
+- [ ] Identify canonical ownership and retire duplicated maintenance without breaking existing deployments.
+
+Do not describe the project as production-ready until these gates are verified. Full account-wide tracker: [GitHub 35](https://github.com/manu-alvarez/manu-alvarez.github.io/blob/main/docs/GITHUB-35-CHECKLIST.md).
