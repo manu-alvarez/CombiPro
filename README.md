@@ -2,6 +2,10 @@
 
 CombiPro is a React/Vite frontend for exploring sports odds and generating combinations. Its numerical outputs are estimates, not guarantees of winning.
 
+## Canonical ownership
+
+**This repository (`manu-alvarez/CombiPro`) is the canonical editable source for CombiPro going forward.** `MSBrossAI/apps/combipro`, `SERVER-DEV/apps/combipro` and `MSB/apps/combipro` are historical, integrated or published copies. Changes should be authored and built here, then explicitly synchronized to deployment targets after comparing revisions; do not merge those copies back automatically.
+
 ## Source and current acceptance
 
 This repository was initialized from the application source in [MSBrossAI/apps/combipro](https://github.com/manu-alvarez/MSBrossAI/tree/1e37070fa51f660b0966d4d14a1d1e78e453d082/apps/combipro), pinned to commit `1e37070fa51f660b0966d4d14a1d1e78e453d082`. A different, non-typechecking version also exists in `SERVER-DEV/apps/combipro`; do not synchronize it blindly.
@@ -27,6 +31,6 @@ Production build: `npm run build`. No automatic deployment is configured in this
 - [x] TypeScript checks on the independent repository (CI 45281510564).
 - [ ] Browser functional acceptance with representative API data, empty API responses and error conditions.
 - [ ] Review key handling, API availability and deployment paths.
-- [ ] Identify canonical ownership and retire duplicated maintenance without breaking existing deployments.
+- [x] Canonical ownership documented in this repository; deployment copies remain until their builds are explicitly synchronized.
 
 Do not describe the project as production-ready until these gates are verified. Full account-wide tracker: [GitHub 35](https://github.com/manu-alvarez/manu-alvarez.github.io/blob/main/docs/GITHUB-35-CHECKLIST.md).
