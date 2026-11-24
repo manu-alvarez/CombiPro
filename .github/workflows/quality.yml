@@ -1,7 +1,7 @@
 name: CombiPro quality
 on:
   push:
-    branches: [main, import/combipro-canonical-20261123]
+    branches: [main]
   pull_request:
     branches: [main]
 permissions:
